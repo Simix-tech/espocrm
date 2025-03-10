@@ -1,5 +1,5 @@
 # Utilizar la imagen base oficial de PHP con Apache
-FROM php:7.4-apache
+FROM php:8.2-apache
 
 # Instalar extensiones de PHP necesarias
 RUN docker-php-ext-install pdo pdo_mysql mysqli
