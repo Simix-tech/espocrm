@@ -1,0 +1,20 @@
+on:
+  push:
+    branches:
+      - ferrarese
+  
+jobs:
+  build-and-publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build -t prodas/crm-web:prod-v1 .
+
+      - name: Login to Docker Hub
+        run: docker login -u prodas -p ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Publish Docker image
+        run: docker push prodas/crm-web:prod-v1
