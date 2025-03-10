@@ -12,6 +12,15 @@
         <meta name="apple-mobile-web-app-capable" content="yes">
         <link rel="alternate icon" href="{{basePath}}{{faviconAlternate}}" type="image/x-icon">
         <link rel="icon" href="{{basePath}}{{favicon}}" type="{{faviconType}}">
+        <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
+        <script>
+          window.OneSignalDeferred = window.OneSignalDeferred || [];
+          OneSignalDeferred.push(async function(OneSignal) {
+            await OneSignal.init({
+              appId: "c180fb8c-3ada-4030-aaca-6ae8eb7fe27b",
+            });
+          });
+        </script>
         <script nonce="{{nonce}}">
             window.addEventListener('DOMContentLoaded', () => {
                 require('{{appClientClassName}}', App => {
