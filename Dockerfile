@@ -10,9 +10,12 @@ RUN a2enmod rewrite
 # Establecer el directorio raíz del documento
 ENV APACHE_DOCUMENT_ROOT /var/www/html/public
 
+
 # Ajustar la configuración de Apache para usar el nuevo directorio raíz
 RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
 RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+RUN echo 'ServerName localhost' >> /etc/apache2/apache2.conf
 
 # Copiar los archivos de EspoCRM al directorio del servidor web
 COPY . /var/www/html
